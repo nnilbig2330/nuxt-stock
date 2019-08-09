@@ -49,7 +49,7 @@
                     <td v-if= "info ==='revenue'">{{ stock.mon }}</td>
                     <td v-if= "info ==='revenue'">{{ stock.yoy }}</td>
                     <td>
-                        <button type= "button" class="btn btn-danger btn-sm" @click="removeStock(stock)">Delete</button>
+                        <button type= "button" class="btn btn-danger btn-sm" @click="removeStock(index)">Delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -103,8 +103,8 @@ export default {
                 console.log(err)
             } 
         },
-        async removeStock (stock) {
-            const path = `http://localhost:5000/tracklist/${stock.stockid}`
+        async removeStock (stockid) {
+            const path = `http://localhost:5000/tracklist/${stockid}`
             try {
                 await axios.delete(path)
                 await this.getStocks()
